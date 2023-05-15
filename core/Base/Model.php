@@ -1,0 +1,22 @@
+<?php
+namespace Core\Base;
+
+
+class Model
+{
+    private static $link;
+
+    public function __construct()
+    {
+        if (!self::$link) {
+            self::$link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            mysqli_query(self::$link, "SET NAMES 'utf8'");
+        }
+    }
+
+    protected function findOne($query)
+    {
+        $result = mysqli_query(self::$link, $query) or die(mysqli_error(self::$link));
+        return mysqli_fetch_all($result,MYSQLI_ASSOC);
+    }
+}
