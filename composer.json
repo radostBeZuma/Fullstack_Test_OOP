@@ -1,0 +1,13 @@
+{
+    "name": "vendortest/packagetest",
+    "description": "This project is for a news blog",
+    "type": "project",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\" : "core",
+            "Project\\" : "project"
+        }
+    }
+}
