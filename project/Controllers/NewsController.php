@@ -5,15 +5,12 @@ use Project\Models\NewsModel;
 
 class NewsController extends Controller
 {
-    public $title = 'Новости';
+    public $title = 'Список новостей';
 
     public function index($params)
     {
-        $model = (new NewsModel())->index();
-        echo '<pre>';
-        print_r($model);
-        echo '</pre>';
+        $allNews = (new NewsModel())->index();
 
-        return $this->render('news/index', ['a' => 'e']);
+        return $this->render('news/index', ['allNews' => $allNews]);
     }
 }
