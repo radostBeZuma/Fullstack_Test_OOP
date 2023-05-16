@@ -98,3 +98,32 @@ body {
 .plate-w-tools__btn-remove:focus {
     background-color: #B22222;
 }
+
+.detail__backurl a {
+    text-decoration: none;
+    color: black;
+}
+
+.detail__backurl a:hover {
+    text-decoration: underline;
+}
+
+.detail__title {
+    margin-bottom: 25px;
+}
+
+.detail__date {
+    margin-bottom: 25px;
+}
+
+.detail__img {
+    width: 25%;
+    height: auto;
+    margin: 0 25px 25px 0;
+    float: left;
+}
+
+.detail__text p {
+    margin-bottom: 25px;
+}
+

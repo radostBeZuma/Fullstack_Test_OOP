@@ -11,7 +11,7 @@
                 </div>
                 <div class="news__wrap-info">
                     <div class="news__date"><?= $news['date_created'] ?></div>
-                    <a class="news__link" href="">
+                    <a class="news__link" href="<?= '/' . $news['id'] . '/' ?>">
                         <h3 class="news__title"><?= $news['title'] ?></h3>
                     </a>
                     <div class="news__announcement"><?= $news['announce_text'] ?></div>

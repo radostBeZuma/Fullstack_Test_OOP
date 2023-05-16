@@ -5,12 +5,19 @@ use Project\Models\NewsModel;
 
 class NewsController extends Controller
 {
-    public $title = 'Список новостей';
 
     public function index($params)
     {
         $allNews = (new NewsModel())->index();
 
-        return $this->render('news/index', ['allNews' => $allNews]);
+        return $this->render('Список новостей', 'news/index', ['allNews' => $allNews]);
+    }
+
+    public function detail($params)
+    {
+
+        $oneNews = (new NewsModel())->detail($params['id']);
+
+        return $this->render('Детальная страница', 'news/detail', ['oneNews' => $oneNews]);
     }
 }
