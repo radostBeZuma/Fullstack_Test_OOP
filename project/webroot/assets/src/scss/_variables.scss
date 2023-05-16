@@ -1,0 +1,99 @@
+// body color start
+
+$body-color: #333333;
+
+// body color end
+
+// паддинги и марджины
+
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        1: $spacer * .25,   // 4
+        2: $spacer * .5,    // 8
+        3: $spacer,         // 16
+        4: $spacer * 1.25,  // 20
+        5: $spacer * 1.5,   // 24
+        6: $spacer * 2,     // 32
+        7: $spacer * 2.5,   // 40
+        8: $spacer * 3,     // 48
+        9: $spacer * 3.5,   // 56
+        10: $spacer * 4,    // 64
+        11: $spacer * 4.5,  // 72
+        12: $spacer * 5,    // 80
+        13: $spacer * 5.5,  // 88
+        14: $spacer * 6,    // 96
+        15: $spacer * 6.5,  // 104
+        16: $spacer * 7     // 112
+);
+
+// паддинги и марджины конец
+
+
+// шрифты
+
+$font-family-base:            'Montserrat';
+$font-size-root:              16px;
+$font-size-base:              1rem;
+
+
+$font-weight-lighter:         lighter;
+$font-weight-light:           300;
+$font-weight-normal:          400;
+$font-weight-medium:          500;
+$font-weight-semibold:        600;
+$font-weight-bold:            700;
+$font-weight-black:           900;
+$font-weight-bolder:          bolder;
+
+$h1-font-size:                $font-size-base * 2.5;    // 40px
+$h2-font-size:                $font-size-base * 2;      // 32px
+$h3-font-size:                $font-size-base * 1.75;   // 28px
+$h4-font-size:                $font-size-base * 1.5;    // 24px
+$h5-font-size:                $font-size-base * 1.25;   // 20px
+$h6-font-size:                $font-size-base;          // 16px
+$h7-font-size:                $font-size-base * 0.875;  // 14px
+$h8-font-size:                $font-size-base * 1.125;  // 18px
+$h9-font-size:                $font-size-base * 1.375;  // 22px
+$h10-font-size:               $font-size-base * 0.625;  // 10px
+$h11-font-size:               $font-size-base * 0.75;   // 12px
+
+$font-sizes: (
+        1: $h1-font-size,
+        2: $h2-font-size,
+        3: $h3-font-size,
+        4: $h4-font-size,
+        5: $h5-font-size,
+        6: $h6-font-size,
+        7: $h7-font-size,
+        8: $h8-font-size,
+        9: $h9-font-size,
+        10: $h10-font-size,
+        11: $h11-font-size,
+);
+
+
+// шрифты конец
+
+// сетка
+
+$grid-gutter-width: 30px;
+
+// точки для css - работают от нуля и до 1200,
+// то есть мобильная версия потом уже компьютерная версия
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+);
+
+// размер контейнера
+$container-max-widths: (
+        md: 720px,
+        lg: 960px,
+        xl: 1170px
+);
+
+// сетка конец

@@ -1,0 +1,15 @@
+// Щрифты
+@import 'fonts.scss';
+
+// Переопределение дефолтных значений переменных Bootstrap и определение своих
+@import '_variables.scss';
+
+// Бутстрап
+@import 'bootstrap/scss/bootstrap.scss';
+
+// api bootstrap
+@import 'custom-bs/api.scss';
+
+// Блоки
+@import 'blocks/*';
+

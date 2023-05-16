@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
 
-    <link rel="stylesheet" href="/project/webroot/css/style.css">
+    <link rel="stylesheet" href="/project/webroot/assets/build/css/style.min.css">
 </head>
 <body>
     <div class="container">
         <h1 class="layout-title"><?= $title ?></h1>
         <?= $content ?>
     </div>
+
+    <script src="/project/webroot/assets/build/js/main.min.js"></script>
 </body>
 </html>

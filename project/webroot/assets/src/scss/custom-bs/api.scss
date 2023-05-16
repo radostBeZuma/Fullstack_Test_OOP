@@ -1,0 +1,33 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/maps";
+@import "node_modules/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+                $utilities, (
+                "font-weight": map-merge(
+                                map-get($utilities, "font-weight"),
+                                (
+                                        responsive: true,
+                                        values: (
+                                                medium: $font-weight-medium,
+                                                black:  $font-weight-black,
+                                        )
+                                ),
+                ),
+                "font-size": map-merge(
+                                map-get($utilities, "font-size"),
+                                (
+                                        responsive: true,
+                                ),
+                ),
+                "position": map-merge(
+                                map-get($utilities, "position"),
+                                (
+                                        responsive: true,
+                                ),
+                ),
+        )
+);
+
+@import "node_modules/bootstrap/scss/utilities/api";
