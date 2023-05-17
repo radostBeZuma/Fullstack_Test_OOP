@@ -5,8 +5,6 @@ use Core\Base\Controller;
 class ErrorController extends Controller
 {
     public function notFound() {
-        $this->title = 'Страница не найдена';
-
-        return $this->render('error/notFound');
+        return $this->render('Страница не найдена', 'error/notFound');
     }
 }

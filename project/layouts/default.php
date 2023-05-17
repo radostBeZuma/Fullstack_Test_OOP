@@ -11,9 +11,9 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="layout-title"><?= $title ?></h1>
-        <?= $content ?>
+        <h1 class="layout-title fs-4 fw-bold my-4 text-uppercase"><?= $title ?></h1>
     </div>
+    <?= $content ?>
 
     <script src="/project/webroot/assets/build/js/main.min.js"></script>
 </body>

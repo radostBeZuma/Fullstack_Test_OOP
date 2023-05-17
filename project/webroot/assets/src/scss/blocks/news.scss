@@ -1,0 +1,14 @@
+@import "node_modules/bootstrap/scss/variables";
+
+.news {
+  &__date {
+    background-color: $gray-200;
+    border-radius: 5px;
+  }
+
+  &__card-img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+}
