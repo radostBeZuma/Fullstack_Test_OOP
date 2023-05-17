@@ -27,7 +27,7 @@
                             <a class="" href="<?= '/' . $news['id'] . '/' ?>">
                                 <h5 class="card-title"><?= $news['title'] ?></h5>
                             </a>
-                            <div class="card-text text"><?= $news['announce_text'] ?></div>
+                            <div class="card-text text-150"><?= $news['announce_text'] ?></div>
                         </div>
                     </div>
                 </div>
