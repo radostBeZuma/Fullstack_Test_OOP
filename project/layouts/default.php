@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
 
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+
     <link rel="stylesheet" href="/project/webroot/assets/build/css/style.min.css">
 </head>
 <body>
