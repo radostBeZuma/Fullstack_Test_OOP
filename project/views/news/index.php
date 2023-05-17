@@ -1,17 +1,21 @@
 <div class="container">
+    
     <nav>
         <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Предыдущая</a>
+            <li class="page-item <?= ($pag['current_page'] == reset($pag['count_page'])) ? ('disabled') : ('') ?>">
+                <a class="page-link" href="<?= ($pag['current_page'] != reset($pag['count_page'])) ? ('/page/' . $prevPage = $pag['current_page'] - 1 . '/') : ('#') ?>">Предыдущая</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Следующая</a>
+            <? foreach ($pag['count_page'] as $page) : ?>
+                <li class="page-item <?= ($page == $pag['current_page']) ? ('active') : ('') ?>">
+                    <a class="page-link" href="<?= '/page/' . $page . '/' ?>"><?= $page ?></a>
+                </li>
+            <? endforeach; ?>
+            <li class="page-item <?= ($pag['current_page'] == end($pag['count_page'])) ? ('disabled') : ('') ?>">
+                <a class="page-link" href="<?= ($pag['current_page'] != end($pag['count_page'])) ? ('/page/' . $nextPage = $pag['current_page'] + 1 . '/') : ('#') ?>">Следующая</a>
             </li>
         </ul>
     </nav>
+
     <div class="news mb-12">
         <div class="row">
             <? foreach ($allNews as $news) : ?>
@@ -30,6 +34,7 @@
             <? endforeach; ?>
         </div>
     </div>
+
 </div>
 
 <div class="panel-tools position-fixed bottom-0 start-0 end-0 bg-white p-4">
