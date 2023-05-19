@@ -41,7 +41,6 @@
     <div class="container">
         <div class="panel-tools__wrap d-flex justify-content-end">
             <button class="panel-tools__btn-add btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Добавить</button>
-            <!--<button class="panel-tools__btn-add btn btn-danger" type="button">Удалить</button>-->
         </div>
     </div>
 </div>
