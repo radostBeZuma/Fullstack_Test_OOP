@@ -15,12 +15,10 @@ var path = {
     build: {
         css: 'project/webroot/assets/build/css/',
         js: 'project/webroot/assets/build/js/',
-        img: 'project/webroot/assets/build/img/',
     },
     src: {
         sass: 'project/webroot/assets/src/scss/main.scss',
         js: 'project/webroot/assets/src/js/main.js',
-        img: 'project/webroot/assets/src/img/**/*.*'
     }
 };
 
@@ -69,28 +67,12 @@ function fonts() {
         .pipe(dest('project/webroot/assets/build/fonts/'))
 }
 
-function cleanImg() {
-    return del(path.build.img);
-}
-
-function img() {
-    return src(path.src.img)
-        .pipe(dest(path.build.img))
-}
-
 exports.style = style;
 exports.js = js;
 exports.fonts = fonts;
-exports.img = series(cleanImg, img);
 
 exports.default = function() {
     watch('project/webroot/assets/src/scss/*.scss', style);
     watch('project/webroot/assets/src/scss/**/*.scss', style);
     watch('project/webroot/assets/src/js/*.js', js);
-    // watch('project/webroot/assets/src/scss/blocks/*.scss', style);
-    // watch('src/*.js', series(clean, javascript));
-    // src/fonts/**/*.ttf
 };
-
-
-// сделать так чтобы очищались папки
