@@ -22,12 +22,20 @@
                 <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-stretch mb-4">
                     <div class="card">
                         <img class="news__card-img card-img-top" src="<?= $news['announce_url'] ?>" alt="<?= $news['title'] ?>" title="<?= $news['title'] ?>">
-                        <div class="card-body">
-                            <div class="news__date d-inline-block fs-11 p-1 mb-2"><?= $news['date_created'] ?></div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="news__date d-inline-block fs-11 p-1 mb-2 align-self-start"><?= $news['date_created'] ?></div>
                             <a class="" href="<?= '/' . $news['id'] . '/' ?>">
                                 <h5 class="card-title"><?= $news['title'] ?></h5>
                             </a>
                             <div class="card-text text-150"><?= $news['announce_text'] ?></div>
+                            <div class="news__card-tools d-flex justify-content-end">
+                                <a class="btn btn-danger" title="Удалить" href="">
+                                    <img src="/project/webroot/assets/build/img/delete.png" alt="" width="15" height="15">
+                                </a>
+                                <a class="btn btn-warning ms-2" title="Редактировать" href="">
+                                    <img src="/project/webroot/assets/build/img/update.png" alt="" width="15" height="15">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
