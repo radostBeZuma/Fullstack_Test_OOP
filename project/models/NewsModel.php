@@ -20,4 +20,13 @@ class NewsModel extends Model
         $data = $this->findOne($query);
         return $data['total'];
     }
+
+    public function saveNewNews($title, $anounce, $fileAnounce, $detail, $fileDetail) {
+        return $this->save($title, $anounce, $fileAnounce, $detail, $fileDetail);
+    }
+
+    public function getLastIdNews()
+    {
+        return $this->getLastId();
+    }
 }

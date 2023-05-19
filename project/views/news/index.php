@@ -54,30 +54,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form class="news-add-modal__form" action="">
+                <form class="news-add-modal__form" id="addForm" method="post" action="">
                     <div class="mb-3">
                         <label for="InputTitle" class="form-label">Заголовок</label>
-                        <input type="text" class="form-control" id="InputTitle">
+                        <input type="text" class="form-control" id="InputTitle" required>
                     </div>
                     <div class="mb-3">
                         <label for="TextareaAnounce" class="form-label">Анонсный текст</label>
-                        <textarea class="form-control" id="TextareaAnounce" rows="3"></textarea>
+                        <textarea class="form-control" id="TextareaAnounce" rows="6" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="FileAnounceImg" class="form-label">Анонсная картинка</label>
-                        <input class="form-control form-control-sm" type="file" id="FileAnounceImg">
+                        <input class="form-control form-control-sm" type="file" id="FileAnounceImg" required>
                     </div>
                     <div class="mb-3">
                         <label for="TextareaDetail" class="form-label">Детальный текст</label>
-                        <textarea class="form-control" id="TextareaDetail" rows="3"></textarea>
+                        <textarea class="form-control" id="TextareaDetail" rows="6" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="FileDetailImg" class="form-label">Детальная картинка</label>
-                        <input class="form-control form-control-sm" type="file" id="FileDetailImg">
+                        <input class="form-control form-control-sm" type="file" id="FileDetailImg" required>
                     </div>
+                    <div class="mb-3 all-error text-danger"></div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Сохранить изменения</button>
+                        <button type="submit" class="btn btn-primary" id="btnAdd">Сохранить изменения</button>
                     </div>
                 </form>
             </div>

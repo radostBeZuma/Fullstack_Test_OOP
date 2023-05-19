@@ -5,3 +5,5 @@
 //= ../../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js
 
 //= news.js
+
+//= create.js
