@@ -29,12 +29,15 @@
                             </a>
                             <div class="card-text text-150"><?= $news['announce_text'] ?></div>
                             <div class="news__card-tools d-flex justify-content-end">
-                                <a class="btn btn-danger" title="Удалить" href="">
-                                    <img src="/project/webroot/assets/build/img/delete.png" alt="" width="15" height="15">
-                                </a>
-                                <a class="btn btn-warning ms-2" title="Редактировать" href="">
-                                    <img src="/project/webroot/assets/build/img/update.png" alt="" width="15" height="15">
-                                </a>
+                                <form action="">
+                                    <input type="hidden" name="deleteId" value="<?= '/delete/' . $news['id'] . '/' ?>">
+                                    <button class="btn btn-danger" type="submit" title="Удалить">
+                                        <img src="/project/webroot/assets/build/img/delete.png" alt="" width="15" height="15">
+                                    </button>
+                                </form>
+<!--                                <a class="btn btn-warning ms-2" title="Редактировать" href="">-->
+<!--                                    <img src="/project/webroot/assets/build/img/update.png" alt="" width="15" height="15">-->
+<!--                                </a>-->
                             </div>
                         </div>
                     </div>
