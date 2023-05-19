@@ -4,6 +4,8 @@ use Core\Base\View;
 use Core\Router\Router;
 use Core\Router\Dispatcher;
 
+session_start();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 

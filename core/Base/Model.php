@@ -42,4 +42,10 @@ class Model
 
         return mysqli_insert_id(self::$link);
     }
+
+    protected function deleteId($id) {
+        $stmt = mysqli_prepare(self::$link, "DELETE FROM news WHERE id=?");
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+    }
 }

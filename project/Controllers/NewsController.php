@@ -221,6 +221,13 @@ class NewsController extends Controller
         ];
     }
 
+    public function delete($params) {
+        (new NewsModel())->deleteNewsById($params['id']);
+
+        $_SESSION['alert'] = 'msg';
+        header("Location: /");
+    }
+
     public function detail($params)
     {
 

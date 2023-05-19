@@ -7,3 +7,5 @@
 //= news.js
 
 //= create.js
+
+//= delete.js

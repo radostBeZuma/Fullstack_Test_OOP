@@ -1,5 +1,12 @@
 <div class="container">
-    
+
+    <? if(isset($_SESSION['alert'])): ?>
+        <div class="alert-top alert alert-success js-alert" role="alert">
+            Запись была удалена!
+        </div>
+     <? unset($_SESSION['alert']); ?>
+    <? endif; ?>
+
     <nav>
         <ul class="pagination">
             <li class="page-item <?= ($pag['current_page'] == reset($pag['count_page'])) ? ('disabled') : ('') ?>">
@@ -29,9 +36,9 @@
                             </a>
                             <div class="card-text text-150"><?= $news['announce_text'] ?></div>
                             <div class="news__card-tools d-flex justify-content-end">
-                                <form action="">
-                                    <input type="hidden" name="deleteId" value="<?= '/delete/' . $news['id'] . '/' ?>">
-                                    <button class="btn btn-danger" type="submit" title="Удалить">
+                                <form class="js-delete-form" action="<?= '/delete/' . $news['id'] . '/' ?>" method="post">
+                                    <input class="js-news-title" type="hidden" value="<?= $news['title'] ?>">
+                                    <button class="btn btn-danger" type="submit" id="btnDelete" title="Удалить">
                                         <img src="/project/webroot/assets/build/img/delete.png" alt="" width="15" height="15">
                                     </button>
                                 </form>

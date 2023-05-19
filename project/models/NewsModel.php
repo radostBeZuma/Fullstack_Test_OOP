@@ -29,4 +29,8 @@ class NewsModel extends Model
     {
         return $this->getLastId();
     }
+
+    public function deleteNewsById($id){
+        $this->deleteId($id);
+    }
 }
