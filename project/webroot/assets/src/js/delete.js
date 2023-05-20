@@ -1,9 +1,7 @@
 const formInstDelete = document.querySelectorAll('.js-delete-form');
 
 if (formInstDelete) {
-    function limitNumCharacters(title) {
-        return title = title.slice(0, 30)+'...';
-    }
+    const truncateString = (s, w) => s.length > w ? s.slice(0, w).trim() + "..." : s;
 
     formInstDelete.forEach(function(form) {
         form.addEventListener('submit', (e) => {
@@ -11,7 +9,7 @@ if (formInstDelete) {
 
             const newsTitle = form.querySelector('.js-news-title');
 
-            let title = limitNumCharacters(newsTitle.value);
+            let title = truncateString(newsTitle.value, 30);
             let text = 'Вы действительно хотите удалить новость: \"' + title + '\"?';
 
             if (confirm(text)) {
