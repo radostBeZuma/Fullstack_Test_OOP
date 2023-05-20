@@ -1,7 +1,9 @@
-const updateForm = document.getElementById('updateModal')
+const updateModal = document.getElementById('updateModal');
 
-if (updateForm) {
-    updateForm.addEventListener('show.bs.modal', event => {
+// передача id в форму через событие bootstrap`a
+
+if (updateModal) {
+    updateModal.addEventListener('show.bs.modal', event => {
 
         const button = event.relatedTarget;
 
@@ -12,3 +14,4 @@ if (updateForm) {
         idField.value = getId;
     })
 }
+
