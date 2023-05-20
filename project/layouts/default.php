@@ -25,7 +25,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" id="updateForm">
                         <div class="mb-3">
                             <label for="InputTitleUpdate" class="col-form-label">Заголовок новости:</label>
                             <input type="text" class="form-control" id="InputTitleUpdate">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="FileAnounceImgUpdate" class="form-label">Анонсная картинка:</label>
-                            <input class="form-control form-control-sm" type="file" id="FileAnounceImgUpdate">
+                            <input class="form-control form-control-sm" type="file" id="FileAnounceImgUpdate" accept="image/*">
                         </div>
                         <div class="mb-3">
                             <label for="TextareaDetailUpdate" class="form-label">Детальный текст:</label>
@@ -44,16 +44,16 @@
                         </div>
                         <div class="mb-3">
                             <label for="FileDetailImgUpdate" class="form-label">Детальная картинка:</label>
-                            <input class="form-control form-control-sm" type="file" id="FileDetailImgUpdate">
+                            <input class="form-control form-control-sm" type="file" id="FileDetailImgUpdate" accept="image/*">
                         </div>
                         <div>
                             <input type="hidden" id="InputIdUpdate">
                         </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-secondary me-2" data-bs-dismiss="modal" type="button">Закрыть</button>
+                            <button class="btn btn-primary" type="submit" formaction="updateForm">Редактировать</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Редактировать</button>
                 </div>
             </div>
         </div>
