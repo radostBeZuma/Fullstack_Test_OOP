@@ -9,3 +9,5 @@
 //= create.js
 
 //= delete.js
+
+//= update.js

@@ -42,9 +42,9 @@
                                         <img src="/project/webroot/assets/build/img/delete.png" alt="" width="15" height="15">
                                     </button>
                                 </form>
-<!--                                <a class="btn btn-warning ms-2" title="Редактировать" href="">-->
-<!--                                    <img src="/project/webroot/assets/build/img/update.png" alt="" width="15" height="15">-->
-<!--                                </a>-->
+                                <button class="btn btn-warning ms-2" title="Редактировать" type="button" data-bs-toggle="modal" data-bs-target="#updateModal" data-bs-id="<?= $news['id'] ?>"">
+                                    <img src="/project/webroot/assets/build/img/update.png" alt="" width="15" height="15">
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -102,3 +102,4 @@
         </div>
     </div>
 </div>
+
