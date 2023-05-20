@@ -9,7 +9,7 @@ if (formInst) {
         fileDetail: document.getElementById('FileDetailImg'),
     }
 
-    let errorCount;
+    let errorCount = 0;
 
     formInst.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -26,13 +26,8 @@ if (formInst) {
     });
 
     function sendNReceiveJson(url, method, data) {
-        fetch(url,
-            {
-                method: method,
-                body: data
-            })
-            .then(function(res)
-            {return res.json();})
+        fetch(url, {method: method, body: data })
+            .then(function(res) {return res.json();})
             .then(function(data)
             {
                 if(!data.ok) {
@@ -46,21 +41,21 @@ if (formInst) {
 
     function getError(errTool, fields, err) {
         const allError = errTool;
+        err++;
 
         if (err > 0) {
             allError.innerHTML = '';
             err = 0;
+            console.log(err);
         }
 
         for (let key of Object.keys(fields)) {
             allError.innerHTML += '<p>' + fields[key] + ' ' + key + '</p>';
         }
-
-        err++;
     }
 
     function okMethod(id) {
-        $newPage = '/' + id + '/';
+        let $newPage = '/' + id + '/';
         window.location.replace($newPage);
     }
 }

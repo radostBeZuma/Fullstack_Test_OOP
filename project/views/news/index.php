@@ -95,7 +95,7 @@
                     <div class="mb-3 all-error text-danger"></div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="submit" class="btn btn-primary" id="btnAdd">Сохранить изменения</button>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </div>
                 </form>
             </div>
