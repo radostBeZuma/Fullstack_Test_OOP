@@ -76,9 +76,14 @@ if (updateForm) {
 
         const id = document.getElementById('InputIdUpdate').value;
         const data = validFields(fields);
-        let url = '/update/' + id + '/';
 
-        sendNReceiveJson(url, 'POST', data);
+        if(!data.entries().next().done) {
+            let url = '/update/' + id + '/';
+
+            sendNReceiveJson(url, 'POST', data);
+        }
+
+        // вывести ошибку о том что пустые поля
     }
 
     updateForm.addEventListener('submit', (e) => {
