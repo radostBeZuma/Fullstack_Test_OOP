@@ -46,7 +46,6 @@ if (formInst) {
         if (err > 0) {
             allError.innerHTML = '';
             err = 0;
-            console.log(err);
         }
 
         for (let key of Object.keys(fields)) {
