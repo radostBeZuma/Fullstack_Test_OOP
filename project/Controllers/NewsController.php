@@ -114,7 +114,7 @@ class NewsController extends Controller
                         $this->errorArr['fields'][$nameField] = ($this->errorMsg())['1'];
                     }
                     else {
-                        $fields[$nameField]['data'] = $this->validateSimpleText($data['data']);
+                        $this->valid[$nameField] = $this->validateSimpleText($data['data']);
                     }
                     break;
                 case 'file':
@@ -122,7 +122,9 @@ class NewsController extends Controller
                         $this->errorArr['fields'][$nameField] = ($this->errorMsg())['1'];
                     }
                     else {
-                        $this->validFile($nameField, $data['data']);
+                        if($this->validFile($nameField, $data['data'])) {
+                            $this->valid[$nameField] = $data['data'];
+                        }
                     }
                     break;
             }
@@ -132,10 +134,6 @@ class NewsController extends Controller
             $this->output = $this->errorArr;
             return false;
         } else {
-            foreach ($fields as $key => $field) {
-                $this->valid[$key] = $field['data'];
-            }
-
             return true;
         }
 
@@ -149,6 +147,8 @@ class NewsController extends Controller
     }
 
     private function validFile($name, $file) {
+        $err = 0;
+
         $fileSizeLimit = 5 * 1024 * 1024;
         $allowedTypes  = [
             IMAGETYPE_GIF,
@@ -161,17 +161,24 @@ class NewsController extends Controller
 
         if ($file['error'] !== UPLOAD_ERR_OK) {
             $this->errorArr['fields'][$name] = ($this->errorMsg())['2'];
-            $this->output = $this->errorArr;
+            $err++;
         }
 
         if (!$this->validateFileSize($file['tmp_name'], $fileSizeLimit)) {
             $this->errorArr['fields'][$name] = ($this->errorMsg())['3'];
-            $this->output = $this->errorArr;
+            $err++;
         }
 
         if(!$this->validateFileType($file['tmp_name'], $allowedTypes)) {
             $this->errorArr['fields'][$name] = ($this->errorMsg())['4'];
-            $this->output = $this->errorArr;
+            $err++;
+        }
+
+        if ($err > 0) {
+            return false;
+        }
+        else {
+            return true;
         }
     }
 
