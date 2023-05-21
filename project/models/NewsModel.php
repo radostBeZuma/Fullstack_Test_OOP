@@ -33,4 +33,74 @@ class NewsModel extends Model
     public function deleteNewsById($id){
         $this->deleteId($id);
     }
+
+    public function getOldUrl($id, $files){
+        $sql = [];
+        $query = 'SELECT ';
+
+        if (isset($files['fileAnounce'])) {
+            $sql[] = ' `announce_url` ';
+        }
+
+        if (isset($files['fileDetail'])) {
+            $sql[] = ' `detail_url` ';
+        }
+
+        $query .=  implode(',', $sql) . 'FROM news WHERE id=?';
+
+        return $this->getById($id, $query);
+    }
+    
+    public function updateTable($id, $fields) {
+        $counter = 0;
+        $sql = [];
+
+        $fields['id'] = $id;
+
+        $query = 'UPDATE `news` SET ';
+
+        if (isset($fields['title'])) {
+            $sql[] = ' `title` = ? ';
+            $counter++;
+        }
+
+        if (isset($fields['anounce'])) {
+            $sql[] = ' `announce_text` = ? ';
+            $counter++;
+        }
+
+        if (isset($fields['fileAnounce'])) {
+            $sql[] = ' `announce_url` = ? ';
+            $counter++;
+        }
+
+        if (isset($fields['detail'])) {
+            $sql[] = ' `detail_text` = ? ';
+            $counter++;
+        }
+
+        if (isset($fields['fileDetail'])) {
+            $sql[] = ' `detail_url` = ? ';
+            $counter++;
+        }
+
+        $query .= implode(',', $sql) . 'WHERE id = ?';
+
+        $types = $this->bindTypes($counter);
+
+        return $this->update($query, $fields, $types);
+    }
+
+    private function bindTypes($c) {
+        $str = '';
+
+        for ($i = 0; $i < $c; $i++) {
+            $str .= 's';
+        }
+
+        $str .= 'i';
+
+        return $str;
+    }
+
 }

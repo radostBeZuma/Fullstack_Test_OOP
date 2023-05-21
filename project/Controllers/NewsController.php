@@ -15,6 +15,14 @@ class NewsController extends Controller
 
     private $valid = [];
 
+    private $response = [];
+
+    private $inputFields = [];
+
+    private $files = [];
+
+    private $OldUrlFiles = [];
+
     public function index($params)
     {
         $numberNewsOnePage = 20;
@@ -233,6 +241,140 @@ class NewsController extends Controller
 
         $_SESSION['alert'] = 'msg';
         header("Location: /");
+    }
+
+    public function update($params) {
+        $id = $params['id'];
+
+        $data = [
+            'title' => [
+                'type' => 'input',
+                'data' => $_POST['title'] ?? null,
+            ],
+            'anounce' => [
+                'type' => 'input',
+                'data' => $_POST['anounce'] ?? null,
+            ],
+            'fileAnounce' => [
+                'type' => 'file',
+                'data' => $_FILES['fileAnounce'] ?? null,
+            ],
+            'detail' => [
+                'type' => 'input',
+                'data' => $_POST['detail'] ?? null,
+            ],
+            'fileDetail' => [
+                'type' => 'file',
+                'data' => $_FILES['fileDetail'] ?? null,
+            ],
+        ];
+
+        if ($this->checkEmptyFields($data) && $this->checkFields($data)) {
+
+            if (!empty($this->files)) {
+
+                // получить старые урлы
+                $this->getOldFiles($id);
+
+                // загрузить файлы
+                if (isset($this->files['fileAnounce'])) {
+                    $this->uploadFile('fileAnounce', $this->files['fileAnounce']);
+                    $this->files['fileAnounce'] = $this->newFileName['fileAnounce'];
+                }
+
+                if (isset($this->files['fileDetail'])) {
+                    $this->uploadFile('fileDetail', $this->files['fileDetail']);
+                    $this->files['fileDetail'] = $this->newFileName['fileDetail'];
+                }
+
+                $allFields = array_merge($this->inputFields, $this->files);
+            }
+            else {
+                $allFields = $this->inputFields;
+            }
+
+            if((new NewsModel()) -> updateTable($id, $allFields)) {
+
+                // удаление файлов
+                $this->deleteFiles($this->OldUrlFiles);
+
+                $this->errorArr['ok'] = true;
+                $this->response =  $this->errorArr;
+
+            } else {
+                $this->errorArr['fields']['all'] = ($this->errorMsg()['5']);
+                $this->response =  $this->errorArr;
+            }
+
+        } else {
+            $this->response = $this->errorArr;
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        die(json_encode($this->response));
+    }
+
+    private function checkEmptyFields($fields) {
+        $el = 0;
+
+        foreach ($fields as $nameField => $data) {
+            if (!empty($data['data'])) {
+                $el++;
+            }
+        }
+
+        if ($el > 0) {
+            return true;
+        }
+        else {
+            $this->errorArr['fields']['all'] = $this->errorMsg()['0'];
+            return false;
+        }
+    }
+
+    private function checkFields($fields) {
+        foreach ($fields as $nameField => $data) {
+            switch ($data['type']) {
+                case 'input':
+                    if (!empty($data['data'])) {
+                        $this->inputFields[$nameField] = $this->validateSimpleText($data['data']);
+                    }
+                    break;
+                case 'file':
+                    if (!empty($data['data'])) {
+                        if ($this->validFile($nameField, $data['data'])) {
+                            $this->files[$nameField] = $data['data'];
+                        }
+                    }
+                    break;
+            }
+        }
+
+        if (!empty($this->errorArr['fields'])) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    private function getOldFiles($id) {
+        $files = $this->files;
+
+        $oldUrls = (new NewsModel())->getOldUrl($id, $files);
+
+        foreach ($oldUrls as $key => $oldUrl) {
+            $this->OldUrlFiles[$key] = $oldUrl;
+        }
+    }
+
+    private function deleteFiles($files) {
+        foreach ($files as $file) {
+            $url = $_SERVER['DOCUMENT_ROOT'] . $file;
+            if (file_exists($url)) {
+                unlink($url);
+            }
+        }
     }
 
     public function detail($params)

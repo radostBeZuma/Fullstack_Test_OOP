@@ -48,4 +48,32 @@ class Model
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
     }
+
+    protected function getById($id, $query) {
+        $stmt = mysqli_prepare(self::$link, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
+
+    protected function update($query, $fields, $types) {
+        $stmt = mysqli_prepare(self::$link, $query);
+        $this->myBind($stmt, $types, $fields);
+        mysqli_stmt_execute($stmt);
+        if(mysqli_stmt_affected_rows($stmt) != 1) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return true;
+    }
+
+    private function myBind($stmt, $types, $data) {
+        $references_to_data = array();
+        foreach ($data as &$reference) { $references_to_data[] = &$reference; }
+        unset($reference);
+        call_user_func_array(
+            array($stmt, "bind_param"),
+            array_merge(array($types), $references_to_data));
+    }
 }

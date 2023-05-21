@@ -8,6 +8,7 @@ return [
 
     new Route('/create/', 'news', 'create'),
     new Route('/delete/:id/', 'news', 'delete'),
+    new Route('/update/:id/', 'news', 'update'),
     
     new Route('/:id/', 'news', 'detail'),
 ];
