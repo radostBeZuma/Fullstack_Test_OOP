@@ -31,7 +31,13 @@ class NewsModel extends Model
     }
 
     public function deleteNewsById($id){
-        $this->deleteId($id);
+        return $this->deleteId($id);
+    }
+
+    public function getLinksFiles($id) {
+        $query = 'SELECT `announce_url`, `detail_url` FROM news WHERE id = ?';
+
+        return $this->getById($id, $query);
     }
 
     public function getOldUrl($id, $files){

@@ -47,6 +47,11 @@ class Model
         $stmt = mysqli_prepare(self::$link, "DELETE FROM news WHERE id=?");
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
+        if(mysqli_stmt_affected_rows($stmt) != 1) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return true;
     }
 
     protected function getById($id, $query) {

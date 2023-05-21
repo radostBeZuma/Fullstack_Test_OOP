@@ -237,10 +237,28 @@ class NewsController extends Controller
     }
 
     public function delete($params) {
-        (new NewsModel())->deleteNewsById($params['id']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $params['id'];
 
-        $_SESSION['alert'] = 'msg';
-        header("Location: /");
+            $this->getLinksOldFiles($id);
+
+            if ((new NewsModel())->deleteNewsById($id)) {
+                $this->deleteFiles($this->OldUrlFiles);
+            }
+
+            $_SESSION['alert'] = 'msg';
+            header("Location: /");
+        }
+        else {
+            return $this->render('Страница не найдена', 'error/notFound');
+        }
+    }
+
+    private function getLinksOldFiles($id) {
+        $linksOldFiles = (new NewsModel())->getLinksFiles($id);
+
+        foreach ($linksOldFiles as $key => $oldUrl)
+            $this->OldUrlFiles[$key] = $oldUrl;
     }
 
     public function update($params) {
