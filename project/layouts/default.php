@@ -49,6 +49,7 @@
                         <div>
                             <input type="hidden" id="InputIdUpdate">
                         </div>
+                        <div class="news-update-modal__all-error text-danger"></div>
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-secondary me-2" data-bs-dismiss="modal" type="button">Закрыть</button>
                             <button class="btn btn-primary" type="submit" formaction="updateForm">Редактировать</button>

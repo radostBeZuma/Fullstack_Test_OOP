@@ -40,6 +40,10 @@ if (updateForm) {
         },
     };
 
+    let errCount = 0;
+
+    let errorField = document.querySelector('.news-update-modal__all-error');
+
     const validFields = (fields) => {
         let data = new FormData();
 
@@ -62,13 +66,40 @@ if (updateForm) {
         return data;
     }
 
-    const sendNReceiveJson = (url, method, data) => {
+    const sendNReceiveJson = (url, method, data, errField, errCounter, id) => {
         fetch(url, {method: method, body: data })
             .then(function(res) {return res.json();})
             .then(function(data)
             {
-                console.log(JSON.stringify(data));
+                if(!data.ok) {
+                    getError(errField, data.fields, errCounter);
+                }
+                else {
+                    okMethod(id);
+                }
             })
+    }
+
+    const getError = (errField, fields, errCounter) => {
+        errCounter++;
+
+        if (errCounter > 0) {
+            errField.innerHTML = '';
+            errCounter = 0;
+        }
+
+        for (let key of Object.keys(fields)) {
+            if (fields[key] !== 'all') {
+                errField.innerHTML += '<p>' + fields[key] +  '</p>';
+            } else {
+                errField.innerHTML += '<p>' + fields[key] + ' ' + key + '</p>';
+            }
+        }
+    }
+
+    const okMethod = (id) => {
+        let $newPage = '/' + id + '/';
+        window.location.replace($newPage);
     }
 
     const handlerSubmitFunction = (e, fields) => {
@@ -80,10 +111,14 @@ if (updateForm) {
         if(!data.entries().next().done) {
             let url = '/update/' + id + '/';
 
-            sendNReceiveJson(url, 'POST', data);
-        }
+            sendNReceiveJson(url, 'POST', data, errorField, errCount, id);
+        } else {
+            let fields = {
+                all: 'Все поля формы являются пустыми, заполните ее',
+            };
 
-        // вывести ошибку о том что пустые поля
+            getError(errorField, fields, errCount);
+        }
     }
 
     updateForm.addEventListener('submit', (e) => {
