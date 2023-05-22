@@ -41,7 +41,6 @@ class Model
     }
 
     protected function getLastId() {
-
         return mysqli_insert_id(self::$link);
     }
 
