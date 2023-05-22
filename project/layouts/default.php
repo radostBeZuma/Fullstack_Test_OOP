@@ -32,7 +32,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="TextareaAnounceUpdate" class="form-label">Анонсный текст:</label>
-                            <textarea class="form-control" id="TextareaAnounceUpdate" rows="6"></textarea>
+                            <textarea class="form-control" id="TextareaAnounceUpdate" rows="6" aria-describedby="anounceUpdateHelp"></textarea>
+                            <div id="anounceUpdateHelp" class="form-text">Необходимо вводить поля с тегами &lt;p&gt; &lt;/p&gt;</div>
                         </div>
                         <div class="mb-3">
                             <label for="FileAnounceImgUpdate" class="form-label">Анонсная картинка:</label>
@@ -40,7 +41,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="TextareaDetailUpdate" class="form-label">Детальный текст:</label>
-                            <textarea class="form-control" id="TextareaDetailUpdate" rows="6"></textarea>
+                            <textarea class="form-control" id="TextareaDetailUpdate" rows="6" aria-describedby="detailUpdateHelp"></textarea>
+                            <div id="detailUpdateHelp" class="form-text">Необходимо вводить поля с тегами &lt;p&gt; &lt;/p&gt;</div>
                         </div>
                         <div class="mb-3">
                             <label for="FileDetailImgUpdate" class="form-label">Детальная картинка:</label>
