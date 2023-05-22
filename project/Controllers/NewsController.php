@@ -267,74 +267,79 @@ class NewsController extends Controller
     }
 
     public function update($params) {
-        $id = $params['id'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $params['id'];
 
-        $data = [
-            'title' => [
-                'type' => 'input',
-                'data' => $_POST['title'] ?? null,
-            ],
-            'anounce' => [
-                'type' => 'input',
-                'data' => $_POST['anounce'] ?? null,
-            ],
-            'fileAnounce' => [
-                'type' => 'file',
-                'data' => $_FILES['fileAnounce'] ?? null,
-            ],
-            'detail' => [
-                'type' => 'input',
-                'data' => $_POST['detail'] ?? null,
-            ],
-            'fileDetail' => [
-                'type' => 'file',
-                'data' => $_FILES['fileDetail'] ?? null,
-            ],
-        ];
+            $data = [
+                'title' => [
+                    'type' => 'input',
+                    'data' => $_POST['title'] ?? null,
+                ],
+                'anounce' => [
+                    'type' => 'input',
+                    'data' => $_POST['anounce'] ?? null,
+                ],
+                'fileAnounce' => [
+                    'type' => 'file',
+                    'data' => $_FILES['fileAnounce'] ?? null,
+                ],
+                'detail' => [
+                    'type' => 'input',
+                    'data' => $_POST['detail'] ?? null,
+                ],
+                'fileDetail' => [
+                    'type' => 'file',
+                    'data' => $_FILES['fileDetail'] ?? null,
+                ],
+            ];
 
-        if ($this->checkEmptyFields($data) && $this->checkFields($data)) {
+            if ($this->checkEmptyFields($data) && $this->checkFields($data)) {
 
-            if (!empty($this->files)) {
+                if (!empty($this->files)) {
 
-                // получить старые урлы
-                $this->getOldFiles($id);
+                    // получить старые урлы
+                    $this->getOldFiles($id);
 
-                // загрузить файлы
-                if (isset($this->files['fileAnounce'])) {
-                    $this->uploadFile('fileAnounce', $this->files['fileAnounce']);
-                    $this->files['fileAnounce'] = $this->newFileName['fileAnounce'];
+                    // загрузить файлы
+                    if (isset($this->files['fileAnounce'])) {
+                        $this->uploadFile('fileAnounce', $this->files['fileAnounce']);
+                        $this->files['fileAnounce'] = $this->newFileName['fileAnounce'];
+                    }
+
+                    if (isset($this->files['fileDetail'])) {
+                        $this->uploadFile('fileDetail', $this->files['fileDetail']);
+                        $this->files['fileDetail'] = $this->newFileName['fileDetail'];
+                    }
+
+                    $allFields = array_merge($this->inputFields, $this->files);
+                }
+                else {
+                    $allFields = $this->inputFields;
                 }
 
-                if (isset($this->files['fileDetail'])) {
-                    $this->uploadFile('fileDetail', $this->files['fileDetail']);
-                    $this->files['fileDetail'] = $this->newFileName['fileDetail'];
+                if((new NewsModel()) -> updateTable($id, $allFields)) {
+
+                    // удаление файлов
+                    $this->deleteFiles($this->OldUrlFiles);
+
+                    $this->errorArr['ok'] = true;
+                    $this->response =  $this->errorArr;
+
+                } else {
+                    $this->errorArr['fields']['all'] = ($this->errorMsg()['5']);
+                    $this->response =  $this->errorArr;
                 }
-
-                $allFields = array_merge($this->inputFields, $this->files);
-            }
-            else {
-                $allFields = $this->inputFields;
-            }
-
-            if((new NewsModel()) -> updateTable($id, $allFields)) {
-
-                // удаление файлов
-                $this->deleteFiles($this->OldUrlFiles);
-
-                $this->errorArr['ok'] = true;
-                $this->response =  $this->errorArr;
 
             } else {
-                $this->errorArr['fields']['all'] = ($this->errorMsg()['5']);
-                $this->response =  $this->errorArr;
+                $this->response = $this->errorArr;
             }
 
-        } else {
-            $this->response = $this->errorArr;
+            header('Content-Type: application/json; charset=utf-8');
+            die(json_encode($this->response));
         }
-
-        header('Content-Type: application/json; charset=utf-8');
-        die(json_encode($this->response));
+        else {
+            return $this->render('Страница не найдена', 'error/notFound');
+        }
     }
 
     private function checkEmptyFields($fields) {
