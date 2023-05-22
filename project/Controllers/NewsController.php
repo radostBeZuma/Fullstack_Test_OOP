@@ -64,54 +64,59 @@ class NewsController extends Controller
     }
 
     public function create() {
-        $data = [
-            'title' => [
-                'type' => 'input',
-                'data' => $_POST['title'] ?? null,
-            ],
-            'anounce' => [
-                'type' => 'input',
-                'data' => $_POST['anounce'] ?? null,
-            ],
-            'fileAnounce' => [
-                'type' => 'file',
-                'data' => $_FILES['fileAnounce'] ?? null,
-            ],
-            'detail' => [
-                'type' => 'input',
-                'data' => $_POST['detail'] ?? null,
-            ],
-            'fileDetail' => [
-                'type' => 'file',
-                'data' => $_FILES['fileDetail'] ?? null,
-            ],
-        ];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'title' => [
+                    'type' => 'input',
+                    'data' => $_POST['title'] ?? null,
+                ],
+                'anounce' => [
+                    'type' => 'input',
+                    'data' => $_POST['anounce'] ?? null,
+                ],
+                'fileAnounce' => [
+                    'type' => 'file',
+                    'data' => $_FILES['fileAnounce'] ?? null,
+                ],
+                'detail' => [
+                    'type' => 'input',
+                    'data' => $_POST['detail'] ?? null,
+                ],
+                'fileDetail' => [
+                    'type' => 'file',
+                    'data' => $_FILES['fileDetail'] ?? null,
+                ],
+            ];
 
-        if($this->validFields($data)){
+            if($this->validFields($data)){
 
-            $this->uploadFile('fileAnounce', $this->valid['fileAnounce']);
-            $this->valid['fileAnounce'] = $this->newFileName['fileAnounce'];
+                $this->uploadFile('fileAnounce', $this->valid['fileAnounce']);
+                $this->valid['fileAnounce'] = $this->newFileName['fileAnounce'];
 
-            $this->uploadFile('fileDetail', $this->valid['fileDetail']);
-            $this->valid['fileDetail'] = $this->newFileName['fileDetail'];
+                $this->uploadFile('fileDetail', $this->valid['fileDetail']);
+                $this->valid['fileDetail'] = $this->newFileName['fileDetail'];
 
-            $allField = $this->valid;
+                $allField = $this->valid;
 
-            $save = (new NewsModel())->saveNewNews($allField['title'], $allField['anounce'], $allField['fileAnounce'], $allField['detail'], $allField['fileDetail']);
-            if($save) {
-                $id = (new NewsModel())->getLastIdNews();
-                $this->errorArr['id'] = $id;
-                $this->errorArr['ok'] = true;
-                $this->output =  $this->errorArr;
+                $save = (new NewsModel())->saveNewNews($allField['title'], $allField['anounce'], $allField['fileAnounce'], $allField['detail'], $allField['fileDetail']);
+                if($save) {
+                    $id = (new NewsModel())->getLastIdNews();
+                    $this->errorArr['id'] = $id;
+                    $this->errorArr['ok'] = true;
+                    $this->output =  $this->errorArr;
+                }
+                else {
+                    $this->errorArr['fields']['all'] = ($this->errorMsg())['5'];
+                    $this->output = $this->errorArr;
+                }
             }
-            else {
-                $this->errorArr['fields']['all'] = ($this->errorMsg())['5'];
-                $this->output = $this->errorArr;
-            }
+
+            header('Content-Type: application/json; charset=utf-8');
+            die(json_encode($this->output));
         }
-
-        header('Content-Type: application/json; charset=utf-8');
-        die(json_encode($this->output));
+        else {
+            return $this->render('Страница не найдена', 'error/notFound');
+        }
     }
 
     private function validFields($fields) {
