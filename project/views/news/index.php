@@ -80,7 +80,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="TextareaAnounce" class="form-label">Анонсный текст</label>
-                        <textarea class="form-control" id="TextareaAnounce" rows="6" required></textarea>
+                        <textarea class="form-control" id="TextareaAnounce" rows="6" aria-describedby="anounceAddHelp" required></textarea>
+                        <div id="anounceAddHelp" class="form-text">Необходимо вводить поля с тегами &lt;p&gt; &lt;/p&gt;</div>
                     </div>
                     <div class="mb-3">
                         <label for="FileAnounceImg" class="form-label">Анонсная картинка</label>
@@ -88,7 +89,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="TextareaDetail" class="form-label">Детальный текст</label>
-                        <textarea class="form-control" id="TextareaDetail" rows="6" required></textarea>
+                        <textarea class="form-control" id="TextareaDetail" rows="6" aria-describedby="detailAddHelp" required></textarea>
+                        <div id="detailAddHelp" class="form-text">Необходимо вводить поля с тегами &lt;p&gt; &lt;/p&gt;</div>
                     </div>
                     <div class="mb-3">
                         <label for="FileDetailImg" class="form-label">Детальная картинка</label>
