@@ -10,9 +10,9 @@ class NewsModel extends Model
         return  $this->getById($id, $query);
     }
 
-    public function getRows($offset, $limit) {
-        $query = 'SELECT * FROM `news` order by date_created desc, id asc limit ' . $offset . ',' . $limit;
-        return $this->findMany($query);
+    public function getRows($limit, $offset) {
+        $query = 'SELECT * FROM `news` order by date_created desc, id asc LIMIT ?,?';
+        return $this->getRowsLimitNOffset($query, $limit, $offset);
     }
 
     public function getCountFields() {

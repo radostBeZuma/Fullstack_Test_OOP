@@ -9,7 +9,7 @@ class NewsController extends Controller
         'ok' => false,
     ];
 
-    private $output = '';
+    private $output = [];
 
     private $newFileName = [];
 
@@ -25,7 +25,7 @@ class NewsController extends Controller
 
     public function index($params)
     {
-        $numberNewsOnePage = 20;
+        $numberNewsOnePage = 5;
 
         if (empty($params['page'])) {
             $currentPage = 1;
@@ -34,9 +34,9 @@ class NewsController extends Controller
             $currentPage = $params['page'];
         }
 
-        $offset = ($currentPage * $numberNewsOnePage)- $numberNewsOnePage;
+        $limit = ($currentPage * $numberNewsOnePage)- $numberNewsOnePage;
 
-        $getNewsLimit = (new NewsModel())->getRows($offset, $numberNewsOnePage);
+        $getNewsLimit = (new NewsModel())->getRows($limit, $numberNewsOnePage);
 
         if (!empty($getNewsLimit)) {
 

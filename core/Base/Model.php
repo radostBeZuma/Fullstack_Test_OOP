@@ -26,6 +26,14 @@ class Model
         return mysqli_fetch_assoc($result);
     }
 
+    protected function getRowsLimitNOffset($query, $limit, $offset) {
+        $stmt = mysqli_prepare(self::$link, $query);
+        mysqli_stmt_bind_param($stmt, 'ii', $limit, $offset);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
     protected function save($title, $anounce, $anounceUrl, $detail, $detailUrl) {
 
         $stmt = mysqli_prepare(self::$link, "INSERT INTO news (`title`, `announce_text`, `announce_url`, `detail_text`, `detail_url`) VALUES (?, ?, ?, ?, ?)");
