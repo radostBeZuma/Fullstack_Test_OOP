@@ -237,7 +237,8 @@ class NewsController extends Controller
             '2' => 'При загрузке была ошибка, попробуйте снова',
             '3' => 'Превышен размер файла',
             '4' => 'Неверный тип файла',
-            '5' => 'Попробуйте снова'
+            '5' => 'Попробуйте снова',
+            '6' => 'Данные совпадаю, внесите новые',
         ];
     }
 
@@ -326,7 +327,7 @@ class NewsController extends Controller
                     $this->response =  $this->errorArr;
 
                 } else {
-                    $this->errorArr['fields']['all'] = ($this->errorMsg()['5']);
+                    $this->errorArr['fields']['all'] = ($this->errorMsg()['6']);
                     $this->response =  $this->errorArr;
                 }
 
