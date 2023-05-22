@@ -73,7 +73,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form class="news-add-modal__form" id="addForm" method="post" action="">
+                <form class="news-add-modal__form" id="addForm" method="post" action="/create/">
                     <div class="mb-3">
                         <label for="InputTitle" class="form-label">Заголовок</label>
                         <input type="text" class="form-control" id="InputTitle" required>
