@@ -14,12 +14,6 @@ class Model
         }
     }
 
-    protected function findMany($query)
-    {
-        $result = mysqli_query(self::$link, $query) or die(mysqli_error(self::$link));
-        return mysqli_fetch_all($result,MYSQLI_ASSOC);
-    }
-
     protected function findOne($query)
     {
         $result = mysqli_query(self::$link, $query) or die(mysqli_error(self::$link));
