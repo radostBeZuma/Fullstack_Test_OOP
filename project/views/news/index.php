@@ -30,11 +30,13 @@
                     <div class="card w-100">
                         <img class="news__card-img card-img-top" src="<?= $news['announce_url'] ?>" alt="<?= $news['title'] ?>" title="<?= $news['title'] ?>">
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <div class="news__date d-inline-block fs-11 p-1 mb-2 align-self-start"><?= $news['date_created'] ?></div>
-                            <a class="" href="<?= '/' . $news['id'] . '/' ?>">
-                                <h5 class="card-title"><?= $news['title'] ?></h5>
-                            </a>
-                            <div class="card-text text-150"><?= $news['announce_text'] ?></div>
+                            <div class="news__card-body-inner">
+                                <div class="news__date d-inline-block fs-11 p-1 mb-2 align-self-start"><?= $news['date_created'] ?></div>
+                                <a class="" href="<?= '/' . $news['id'] . '/' ?>">
+                                    <h5 class="card-title"><?= $news['title'] ?></h5>
+                                </a>
+                                <div class="card-text text-150"><?= $news['announce_text'] ?></div>
+                            </div>
                             <div class="news__card-tools d-flex justify-content-end">
                                 <form class="js-delete-form" action="<?= '/delete/' . $news['id'] . '/' ?>" method="post">
                                     <input class="js-news-title" type="hidden" value="<?= $news['title'] ?>">
