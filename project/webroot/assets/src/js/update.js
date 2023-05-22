@@ -89,7 +89,7 @@ if (updateForm) {
         }
 
         for (let key of Object.keys(fields)) {
-            if (fields[key] !== 'all') {
+            if (key === 'all') {
                 errField.innerHTML += '<p>' + fields[key] +  '</p>';
             } else {
                 errField.innerHTML += '<p>' + fields[key] + ' ' + key + '</p>';
