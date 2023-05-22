@@ -25,7 +25,7 @@ class NewsController extends Controller
 
     public function index($params)
     {
-        $numberNewsOnePage = 5;
+        $numberNewsOnePage = 20;
 
         if (empty($params['page'])) {
             $currentPage = 1;
