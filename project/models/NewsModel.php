@@ -6,8 +6,8 @@ use Core\Base\Model;
 class NewsModel extends Model
 {
     public function detail($id) {
-        $query ='SELECT * FROM `news` WHERE `id` = ' . $id;
-        return $this->findOne($query);
+        $query = 'SELECT * FROM `news` WHERE `id` = ?';
+        return  $this->getById($id, $query);
     }
 
     public function getRows($offset, $limit) {
