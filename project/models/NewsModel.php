@@ -75,13 +75,13 @@ class NewsModel extends Model
             $counter++;
         }
 
-        if (isset($fields['fileAnounce'])) {
-            $sql[] = ' `announce_url` = ? ';
+        if (isset($fields['detail'])) {
+            $sql[] = ' `detail_text` = ? ';
             $counter++;
         }
 
-        if (isset($fields['detail'])) {
-            $sql[] = ' `detail_text` = ? ';
+        if (isset($fields['fileAnounce'])) {
+            $sql[] = ' `announce_url` = ? ';
             $counter++;
         }
 
