@@ -397,9 +397,13 @@ class NewsController extends Controller
 
     public function detail($params)
     {
-
         $oneNews = (new NewsModel())->detail($params['id']);
 
-        return $this->render('Детальная страница', 'news/detail', ['oneNews' => $oneNews]);
+        if($oneNews) {
+            return $this->render('Детальная страница', 'news/detail', ['oneNews' => $oneNews]);
+        }
+        else {
+            return $this->render('Страница не найдена', 'error/notFound');
+        }
     }
 }
