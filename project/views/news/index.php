@@ -10,7 +10,7 @@
     <nav>
         <ul class="pagination">
             <li class="page-item <?= ($pag['current_page'] == reset($pag['count_page'])) ? ('disabled') : ('') ?>">
-                <a class="page-link" href="<?= ($pag['current_page'] != reset($pag['count_page'])) ? ('/page/' . $prevPage = $pag['current_page'] - 1 . '/') : ('#') ?>">Предыдущая</a>
+                <a class="page-link" href="<?= ($pag['current_page'] != reset($pag['count_page'])) ? ('/page/' . $prevPage = $pag['current_page'] - 1 . '/') : ('#') ?>">Пред.</a>
             </li>
             <? foreach ($pag['count_page'] as $page) : ?>
                 <li class="page-item <?= ($page == $pag['current_page']) ? ('active') : ('') ?>">
@@ -18,7 +18,7 @@
                 </li>
             <? endforeach; ?>
             <li class="page-item <?= ($pag['current_page'] == end($pag['count_page'])) ? ('disabled') : ('') ?>">
-                <a class="page-link" href="<?= ($pag['current_page'] != end($pag['count_page'])) ? ('/page/' . $nextPage = $pag['current_page'] + 1 . '/') : ('#') ?>">Следующая</a>
+                <a class="page-link" href="<?= ($pag['current_page'] != end($pag['count_page'])) ? ('/page/' . $nextPage = $pag['current_page'] + 1 . '/') : ('#') ?>">След.</a>
             </li>
         </ul>
     </nav>
