@@ -213,6 +213,10 @@ class NewsController extends Controller
         $uploadDir =  '/project/webroot/upload/';
         $getFullDir = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
 
+        if (!file_exists($getFullDir)) {
+            mkdir($getFullDir, 0777);
+        }
+
         $filename   = uniqid() . "-" . time();
         $extension  = pathinfo( $file["name"], PATHINFO_EXTENSION );
         $allName   = $filename . "." . $extension;
