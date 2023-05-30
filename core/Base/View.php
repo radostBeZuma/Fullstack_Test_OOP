@@ -14,7 +14,7 @@ class View
         if (file_exists($layoutPath)) {
             ob_start();
             $title = $page->title;
-            include $layoutPath;
+            require $layoutPath;
             return ob_get_clean();
         } else {
             echo "Не найден файл с лейаутом по пути $layoutPath"; die();
@@ -29,7 +29,7 @@ class View
                 ob_start();
                 $data = $page->data;
                 extract($data);
-                include $viewPath;
+                require $viewPath;
                 return ob_get_clean();
             } else {
                 echo "Не найден файл с представлением по пути $viewPath"; die();
