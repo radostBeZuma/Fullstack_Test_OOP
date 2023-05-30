@@ -3,6 +3,7 @@
 <ol>
     <li>Реализация роутера;</li>
     <li>MVC и ООП;</li>
+    <li>Autoload классов с помощью композера;</li>
     <li>Bootstrap, Api Bootstrap;</li>
     <li>Сборщик Gulp;</li>
     <li>Ajax запросы.</li>
